@@ -14,10 +14,10 @@ jobs:
     - name: Checkout Repository   # Proper indentation
       uses: actions/checkout@v2
 
-    - name: Set up Python 3.12.4      # Proper indentation
+    - name: Set up Python 3.12.6      # Proper indentation
       uses: actions/setup-python@v2
       with:
-        python-version: '3.12.4'      # Correct indentation for 'with'
+        python-version: '3.12.6'      # Correct indentation for 'with'
 
     - name: Install dependencies   # Proper indentation
       run: |
