@@ -27,5 +27,4 @@ jobs:
 
     - name: Run tests              # Proper indentation
       run: |
-        pytest
-
+        main
