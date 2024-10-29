@@ -24,4 +24,5 @@ jobs:
       if: ${{ success() }}   # Runs only if previous step was successful
       run: |
         # jupyter nbconvert --to script 'main.ipynb'
+        Convert.bat
         python main.py
