@@ -1,1 +1,0 @@
-run_docker.ps1
