@@ -4,6 +4,9 @@
 $imageName = "opencv_project"
 $containerName = "opencv_container"
 
+# Authentication
+docker login
+
 # Build the Docker image
 docker build -t $imageName .
 
