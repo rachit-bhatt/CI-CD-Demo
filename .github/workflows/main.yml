@@ -1,29 +1,32 @@
-name: OpenCV Project CI on Windows
+name: OpenCV Project CI on Docker
 
 on: 
   push:
-    branches: [main]   # Fixed the extra colon here
+    branches: [main]
   pull_request:
-    branches: [main]   # Fixed the extra colon here
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    container:
+      image: python:3.12.6
+
     steps:
-    - name: Checkout Repository   # Proper indentation
+    - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Set up Python 3.12.6      # Proper indentation
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.12.6'      # Correct indentation for 'with'
-
-    - name: Install dependencies   # Proper indentation
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run tests              # Proper indentation
+    - name: Run tests
       run: |
-        main
+        pytest tests/   # Run all tests in the tests directory
+
+    - name: Execute main.ipynb
+      if: ${{ success() }}   # Only runs if previous steps were successful
+      run: |
+        jupyter nbconvert --to notebook --execute main.ipynb --output output.ipynb
