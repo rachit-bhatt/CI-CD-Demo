@@ -17,23 +17,13 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Install dependencies
+    - name: Install dependencies and run tests
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-      continue-on-error: false  # Stop on error
-
-    - name: Check installation status
-      if: failure()
-      run: |
-        echo "Dependency installation failed. Please check requirements.txt for any issues."
-
-
-    - name: Run tests
-      run: |
-        pytest tests/   # Run all tests in the tests directory
+        python -m pip install --upgrade pip && \
+        pip install -r requirements.txt && \
+        pytest tests/  # Runs tests only if dependencies install successfully
 
     - name: Execute main.ipynb
-      if: ${{ success() }}   # Only runs if previous steps were successful
+      if: ${{ success() }}   # Runs only if previous step was successful
       run: |
         jupyter nbconvert --to notebook --execute main.ipynb --output output.ipynb
