@@ -23,4 +23,5 @@ jobs:
     - name: Execute main.ipynb
       if: ${{ success() }}   # Runs only if previous step was successful
       run: |
-        jupyter nbconvert --to notebook --execute main.ipynb --output output.ipynb
+        jupyter nbconvert --to script 'main.ipynb' && \
+        python main.py
