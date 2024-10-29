@@ -2,8 +2,9 @@ numpy
 pandas
 matplotlib
 seaborn
-scikit-learn
+sklearn
 opencv-python
 pytest
 nbconvert
-jupyter
+nbformat
+nbclient
